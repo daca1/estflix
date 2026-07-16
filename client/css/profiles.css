@@ -1,0 +1,65 @@
+/* ── PROFILE SELECTION PAGE ────────────────────────────────────────── */
+#page-profiles {
+  min-height: 100vh;
+  background: linear-gradient(160deg, #0a0a14 0%, #0f0f1e 100%);
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+}
+.profiles-wrap { width: 100%; max-width: 860px; }
+
+.profiles-header { text-align: center; margin-bottom: 48px; }
+.profiles-header h1 {
+  font-family: var(--font-display);
+  font-size: 64px; letter-spacing: 4px; color: var(--blue);
+}
+.profiles-header p { color: var(--text-muted); font-size: 18px; margin-top: 8px; }
+
+.profiles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+.profile-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 14px; padding: 36px 20px; cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+  transition: transform .2s, border-color .2s, background .2s;
+  width: 100%;
+}
+.profile-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--blue);
+  background: var(--surface2);
+}
+.profile-avatar { font-size: 56px; line-height: 1; transition: transform .2s; }
+.profile-card:hover .profile-avatar { transform: scale(1.1); }
+.profile-card-name { font-size: 15px; font-weight: 600; color: var(--text); }
+
+.add-profile-btn {
+  background: var(--surface); border: 2px dashed var(--border);
+  border-radius: 14px; padding: 36px 20px; cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+  transition: transform .2s, border-color .2s;
+  color: var(--text-muted); font-family: var(--font-body); width: 100%;
+}
+.add-profile-btn:hover { transform: translateY(-4px); border-color: var(--blue); color: var(--text); }
+.add-profile-btn svg { width: 48px; height: 48px; transition: transform .2s; }
+.add-profile-btn:hover svg { transform: scale(1.1); }
+.add-profile-label { font-size: 15px; font-weight: 600; }
+
+/* Form panel */
+.form-panel {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 14px; padding: 32px;
+  max-width: 440px; margin: 24px auto 0;
+}
+.form-panel h2 { font-size: 20px; font-weight: 700; margin-bottom: 24px; }
+
+.avatar-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.avatar-opt {
+  font-size: 28px; padding: 10px; border-radius: 8px; cursor: pointer;
+  background: var(--bg); border: 2px solid transparent;
+  text-align: center; transition: background .15s, border-color .15s;
+}
+.avatar-opt:hover { background: var(--surface2); }
+.avatar-opt.selected { background: var(--blue); border-color: var(--blue); }

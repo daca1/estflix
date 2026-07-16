@@ -1,0 +1,74 @@
+/* ── AUTH PAGE ──────────────────────────────────────────────────────────── */
+
+#page-auth {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-main);
+  padding: 20px;
+}
+
+.auth-box {
+  background: var(--bg-card);
+  border-radius: 12px;
+  padding: 40px 36px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+.auth-logo {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--accent);
+  text-align: center;
+  margin-bottom: 8px;
+  letter-spacing: -1px;
+}
+
+.auth-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-main);
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.auth-error {
+  background: rgba(229,62,62,0.15);
+  border: 1px solid rgba(229,62,62,0.4);
+  color: #fc8181;
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.auth-error.hidden { display: none; }
+
+.auth-btn {
+  width: 100%;
+  margin-top: 8px;
+  padding: 12px;
+  font-size: 16px;
+}
+
+.auth-switch {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: var(--text-dim);
+}
+
+.auth-link {
+  color: var(--accent);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* ── PROFILES LOGOUT ──────────────────────────────────────────────────── */
+#profiles-logout {
+  text-align: center;
+  margin-top: 12px;
+}
