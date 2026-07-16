@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ESTFlix — Categorias</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/detail-categories.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <div style="display:flex;align-items:center;gap:28px">
+        <a class="logo" href="home.html">ESTFlix</a>
+        <nav id="desktop-nav">
+          <a class="nav-btn" href="home.html">Home</a>
+          <a class="nav-btn active" href="categories.html">Categorias</a>
+          <a class="nav-btn" href="admin.html">Admin</a>
+        </nav>
+      </div>
+      <div class="header-right">
+        <span class="profile-name" id="header-profile-name"></span>
+        <button class="icon-btn hamburger" onclick="toggleMobileMenu()">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+        <button class="icon-btn" onclick="switchProfile()">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16 17 21 12 16 7"/>
+            <line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+          Trocar
+        </button>
+      </div>
+    </div>
+    <div class="mobile-nav" id="mobile-nav">
+      <a class="nav-btn" href="home.html">Home</a>
+      <a class="nav-btn" href="categories.html">Categorias</a>
+      <a class="nav-btn" href="admin.html">Admin</a>
+    </div>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main>
+    <div id="page-categories" class="page"></div>
+  </main>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/page-categories-detail.js"></script>
+  <script>
+    // ── Estado mínimo ──────────────────────────────────────────────────
+    const state = { currentPage: 'categories', activeProfile: null };
+
+    function switchProfile() {
+      sessionStorage.removeItem('activeProfileId');
+      window.location.href = 'profiles.html';
+    }
+
+    function toggleMobileMenu() {
+      document.getElementById('mobile-nav').classList.toggle('open');
+    }
+
+    // navigate usado dentro de renderCategories ao clicar numa categoria
+    function navigate(page) {
+      if (page === 'home') window.location.href = 'home.html';
+    }
+
+    function goToDetail(contentId) {
+      sessionStorage.setItem('selectedContentId', contentId);
+      window.location.href = 'detail.html';
+    }
+
+    function toggleFav(contentId, isFav) {
+      if (!state.activeProfile) return;
+      if (isFav) Profiles.removeFavorite(state.activeProfile.id, contentId);
+      else       Profiles.addFavorite(state.activeProfile.id, contentId);
+      state.activeProfile = Profiles.getById(state.activeProfile.id);
+    }
+
+    // ── Boot ───────────────────────────────────────────────────────────
+    const profileId = sessionStorage.getItem('activeProfileId');
+    if (!profileId) {
+      window.location.href = 'profiles.html';
+    } else {
+      state.activeProfile = Profiles.getById(profileId);
+      if (!state.activeProfile) {
+        window.location.href = 'profiles.html';
+      } else {
+        document.getElementById('header-profile-name').textContent = state.activeProfile.name;
+        renderCategories();
+      }
+    }
+  </script>
+</body>
+</html>
