@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ESTFlix</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/profiles.css">
+  <link rel="stylesheet" href="css/detail-categories.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+  <!-- ── PÁGINA DE AUTENTICAÇÃO ────────────────────────────────── -->
+  <div id="page-auth" class="hidden"></div>
+
+  <!-- ── PÁGINA DE PERFIS ──────────────────────────────────────── -->
+  <div id="page-profiles" class="hidden">
+    <div class="profiles-wrap">
+      <div class="profiles-header">
+        <h1>ESTFlix</h1>
+        <p>Quem está a ver?</p>
+      </div>
+      <div class="profiles-grid" id="profiles-grid"></div>
+      <div id="profile-form-wrap" class="hidden">
+        <div class="form-panel">
+          <h2>Criar Perfil</h2>
+          <div class="form-group">
+            <label>Nome do Perfil</label>
+            <input type="text" id="new-profile-name" placeholder="Introduz o nome" maxlength="20" />
+          </div>
+          <div class="form-group">
+            <label>Escolhe um Avatar</label>
+            <div class="avatar-grid" id="avatar-grid"></div>
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-primary" onclick="submitNewProfile()">Criar</button>
+            <button class="btn btn-secondary" onclick="hideProfileForm()">Cancelar</button>
+          </div>
+        </div>
+      </div>
+      <div id="profiles-logout"></div>
+    </div>
+  </div>
+
+  <!-- ── HEADER (páginas internas) ─────────────────────────────── -->
+  <header id="app-header" class="hidden">
+    <div class="header-inner">
+      <div style="display:flex;align-items:center;gap:28px">
+        <span class="logo" style="cursor:pointer" onclick="navigate('home')">ESTFlix</span>
+        <nav id="desktop-nav">
+          <button class="nav-btn" data-page="home"       onclick="navigate('home')">Home</button>
+          <button class="nav-btn" data-page="categories" onclick="navigate('categories')">Categorias</button>
+          <button class="nav-btn nav-admin-btn" data-page="admin" onclick="navigate('admin')" style="display:none">Admin</button>
+        </nav>
+      </div>
+      <div class="header-right">
+        <span class="profile-name" id="header-profile-name"></span>
+        <button class="icon-btn" onclick="switchProfile()" title="Trocar perfil">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+          </svg>
+          Trocar
+        </button>
+        <button class="icon-btn" onclick="doLogout()" title="Sair">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16 17 21 12 16 7"/>
+            <line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+          Sair
+        </button>
+        <button class="icon-btn hamburger" onclick="toggleMobileMenu()">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-nav" id="mobile-nav">
+      <button class="nav-btn" onclick="navigate('home'); closeMobileMenu()">Home</button>
+      <button class="nav-btn" onclick="navigate('categories'); closeMobileMenu()">Categorias</button>
+      <button class="nav-btn nav-admin-btn" onclick="navigate('admin'); closeMobileMenu()" style="display:none">Admin</button>
+      <button class="nav-btn" onclick="doLogout()">Sair</button>
+    </div>
+  </header>
+
+  <!-- ── MAIN (páginas internas) ───────────────────────────────── -->
+  <main id="app-main" class="hidden">
+    <div id="page-home"       class="page hidden"></div>
+    <div id="page-categories" class="page hidden"></div>
+    <div id="page-admin"      class="page hidden"></div>
+    <div id="page-detail"     class="page hidden"></div>
+  </main>
+
+  <!-- ── SCRIPTS ───────────────────────────────────────────────── -->
+  <script src="js/data.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/page-profiles.js"></script>
+  <script src="js/page-home.js"></script>
+  <script src="js/page-categories-detail.js"></script>
+  <script src="js/page-admin.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>
